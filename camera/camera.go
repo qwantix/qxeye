@@ -48,8 +48,10 @@ type ZoneMatch struct {
 }
 
 const (
-	CameraTraceMatches = CameraTraceFlag(iota)
-	CameraTraceZones   = CameraTraceFlag(iota)
+	CameraTraceNone             = CameraTraceFlag(0x00)
+	CameraTraceMatches          = CameraTraceFlag(0x01)
+	CameraTraceIgnoredZonesOnly = CameraTraceFlag(0x02)
+	CameraTraceZones            = CameraTraceFlag(0x04)
 )
 
 func CameraTraceFlagFromString(flag string) CameraTraceFlag {
@@ -57,9 +59,11 @@ func CameraTraceFlagFromString(flag string) CameraTraceFlag {
 	for _, f := range strings.Split(flag, ",") {
 		switch f {
 		case "matches":
-			b = b & CameraTraceMatches
+			b = b + CameraTraceMatches
+		case "ignoredZonesOnly":
+			b = b + CameraTraceIgnoredZonesOnly
 		case "zones":
-			b = b & CameraTraceZones
+			b = b + CameraTraceZones
 		}
 	}
 	return b
@@ -186,10 +190,13 @@ func (c *CameraEvent) Capture(filename string, matches []CameraMatch, trace Came
 	imWidth := float64(imSize.width)
 	imHeight := float64(imSize.height)
 
-	if trace == CameraTraceZones {
+	if trace&CameraTraceZones != 0 || trace&CameraTraceIgnoredZonesOnly != 0 {
 		// Add zones
 		for _, z := range c.cam.zones {
 			for _, r := range z.regions {
+				if trace&CameraTraceZones == 0 && !z.ignore {
+					continue
+				}
 				item := C.zoneItem_new()
 				if z.name != "" {
 					item.label = C.CString(z.name)
@@ -220,7 +227,7 @@ func (c *CameraEvent) Capture(filename string, matches []CameraMatch, trace Came
 		}
 	}
 
-	if trace == CameraTraceMatches {
+	if trace&CameraTraceMatches != 0 {
 		// Add matches
 		for _, m := range matches {
 			item := C.zoneItem_new()

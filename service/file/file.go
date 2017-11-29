@@ -22,7 +22,7 @@ func New(cfg config.ServiceConfig) *FileService {
 	if _, err := os.Stat(fs.dir); os.IsNotExist(err) {
 		os.MkdirAll(fs.dir, os.ModeTemporary)
 	}
-	camera.CameraTraceFlagFromString(cfg.String("trace"))
+	fs.trace = camera.CameraTraceFlagFromString(cfg.String("traces"))
 	return fs
 }
 
