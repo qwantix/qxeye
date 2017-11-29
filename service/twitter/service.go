@@ -28,7 +28,7 @@ func New(cfg config.ServiceConfig) *TwitterService {
 		cred.AccessTokenSecret = cfg.String("accessTokenSecret")
 	}
 	ts.tw = NewTwitterClient(cred)
-	ts.fs = file.New(config.ServiceConfig{"dir": "/tmp"})
+	ts.fs = file.New(config.ServiceConfig{"dir": "/tmp", "traces": cfg.String("traces")})
 	return ts
 }
 
