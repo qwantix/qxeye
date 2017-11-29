@@ -1,0 +1,76 @@
+{
+  "cameras": [
+    {
+      "name": "Patio",
+      "enabled": true,
+      "endpoint": "rtsp://admin:admin@192.168.10.10/11",
+      "persistence": 50,
+      "matcher": "mobilenet",
+      "zones": [
+        {
+          "ignore": true,
+          "mask": [
+            " #",
+            ""
+          ]
+        },
+        {
+          "name": "alert",
+          "color": "FFFF00",
+          "mask": [
+            "# ",
+            ""
+          ]
+        },
+        {
+          "name": "danger",
+          "color": "FF0000",
+          "mask": [
+            "",
+            "#"
+          ]
+        }
+      ]
+    }
+  ],
+  "matchers": [
+    {
+      "name": "mobilenet",
+      "type": "dnn",
+      "params": {
+        "modelTxt": "data/mobilenet/MobileNetSSD_deploy.prototxt.txt",
+        "modelBin": "data/mobilenet/MobileNetSSD_deploy.caffemodel",
+        "netInput": "data",
+        "netOutput": "detection_out",
+        "inScaleFactor": 0.007843,
+        "meanVal": 127.5,
+        "inputSize": 300,
+        "roiPadding": 10,
+        "classesFile": "data/mobilenet/classes.txt"
+      }
+    }
+  ],
+  "triggers": [
+    {
+      "on": "person",
+      "zones": [
+        "danger"
+      ],
+      "confidence": 0.2,
+      "service": "file",
+      "delay": 20
+    }
+  ],
+  "services": {
+    "twitter": {
+      "consumerKey": "xxxxxxxxxxxxxxxxxxxxxxxx",
+      "consumerSecret": "xxxxxxxxxxxxxxxxxxxxxxxx",
+      "accessToken": "xxxxxxxxxxxxxxxxxxxxxxxx",
+      "accessTokenSecret": "xxxxxxxxxxxxxxxxxxxxxxxx"
+    },
+    "file": {
+      "traces": "matches,ignoredZonesOnly",
+      "dir": "./captures"
+    }
+  }
+}
