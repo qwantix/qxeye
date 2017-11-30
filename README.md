@@ -62,7 +62,7 @@ Zones have 2 utilities, firstly ignore sensitive or uninteresting places, such a
 A blank " " char represent a empty space, and char "#" represent a mask
 
 This mask below represent a mask than slice image in 2 row of 2 columns and hide the first quarter
-```json
+```js
 [
     "# ",
     "  "
@@ -70,7 +70,7 @@ This mask below represent a mask than slice image in 2 row of 2 columns and hide
 ```
 
 But each column is relative to its line, so you can write that to do the same thing.
-```json
+```js
 [
     "# ",
     ""
@@ -78,7 +78,7 @@ But each column is relative to its line, so you can write that to do the same th
 ```
 
 For example, more complicated :
-```json
+```js
 [
     "## ##",
     ""
@@ -92,7 +92,7 @@ Image will be sliced into 4 lines, first line will be slices in 5 cols and last 
 
 `matchers` is an array of object like this:
 
-```json
+```js
 "matchers" : [
     {
       "name": String, // Name of matcher
@@ -108,7 +108,7 @@ Image will be sliced into 4 lines, first line will be slices in 5 cols and last 
 
 `triggers` is an array of object like this:
 
-```json
+```js
 "triggers": [
     {
       "on": String,
@@ -127,7 +127,7 @@ Image will be sliced into 4 lines, first line will be slices in 5 cols and last 
 
 `services` is an object of object like this:
 
-```json
+```js
 "services": [
    "serviceName": { 
        // Params
@@ -137,7 +137,7 @@ Image will be sliced into 4 lines, first line will be slices in 5 cols and last 
 #### file
 Capture image and save it to a file
 
-```json
+```js
 {
     "dir": "./captures", // Dir to store file
     "traces": "matches,ignoredZonesOnly" // Comma separated trace flag
@@ -150,7 +150,7 @@ Capture image and save it to a file
 
 
 #### twitter
-```json
+```js
 {
     "consumerKey": "xxxxxxxxxxxxxxxxxxxxxxxx",
     "consumerSecret": "xxxxxxxxxxxxxxxxxxxxxxxx",
