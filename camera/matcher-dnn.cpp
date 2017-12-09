@@ -92,7 +92,7 @@ void MatcherDnn::init()
 
 vector<Match> MatcherDnn::match(Camera *cam)
 {
-  namedWindow("dnn", WINDOW_NORMAL);
+  // namedWindow("dnn", WINDOW_NORMAL);
   cam->getFrame().copyTo(this->frame);
   Size size = this->frame.size();
   // First, squarize roi to improve detection

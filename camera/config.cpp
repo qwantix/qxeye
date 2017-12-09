@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-
+#include <cstdlib>
 #include "config.hpp"
 
 using namespace std;

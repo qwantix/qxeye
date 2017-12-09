@@ -181,7 +181,7 @@ EXTERNC void cameraMatch_capture(CameraMatch *cm, const char *filename, ZoneList
 EXTERNC ImageSize cameraMatch_getImageSize(CameraMatch *cm)
 {
   Size size = cm->frame.size();
-  return ImageSize{size.width, size.height};
+  return { .width = size.width, .height = size.height };
 }
 
 EXTERNC void cameraMatch_destroy(CameraMatch *cm)

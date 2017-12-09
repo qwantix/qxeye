@@ -44,11 +44,11 @@ private:
   vector<Rect> rois;
   vector<Match> matches;
   // Flags
-  bool frameInvalid = false;
+  bool frameInvalid;
   bool reading;
   Mat persistentFrame;
   // Settings
-  float persistence = 100.0;
+  float persistence;
 };
 
 #endif //CAMERA_H

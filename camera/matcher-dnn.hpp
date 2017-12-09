@@ -15,6 +15,17 @@ using namespace cv::dnn;
 class MatcherDnn : public Matcher
 {
 public:
+  MatcherDnn() {
+    this->roiPadding = 10;
+    this->minConfidence = 0.1f;
+    this->modelTxt = "";
+    this->modelBin = "";
+    this->netInput = "data";
+    this->netOutput = "detection_out";
+    this->inScaleFactor = 1.0f;
+    this->meanVal = 127.5;
+    this->inputBlobSize = Size(300, 300);
+  };
   void init();
   vector<Match> match(Camera *cam);
 
@@ -27,15 +38,15 @@ private:
   Net net;
   Mat frame;
   // Settings
-  int roiPadding = 10;
-  float minConfidence = 0.1f;
-  string modelTxt = "";
-  string modelBin = "";
-  string netInput = "data";
-  string netOutput = "detection_out";
-  float inScaleFactor = 1.0f;
-  float meanVal = 127.5;
-  Size inputBlobSize = Size(300, 300);
+  int roiPadding;
+  float minConfidence;
+  string modelTxt;
+  string modelBin;
+  string netInput;
+  string netOutput;
+  float inScaleFactor;
+  float meanVal;
+  Size inputBlobSize;
 };
 
 #endif //MOTION_MACTHER_DNN_H

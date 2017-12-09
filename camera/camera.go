@@ -1,6 +1,7 @@
 package camera
 
 /*
+#cgo CXXFLAGS: -std=c++11
 #cgo LDFLAGS: -s -I/usr/local/include/opencv -I/usr/local/include/opencv2 -L/usr/local/lib/ -lopencv_core -lopencv_video -lopencv_videoio -lopencv_highgui -lopencv_imgproc -lopencv_objdetect  -lopencv_imgcodecs -lopencv_dnn
 #include <stdlib.h>
 #include <stdbool.h>

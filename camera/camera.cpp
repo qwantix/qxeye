@@ -1,7 +1,6 @@
 
 #include <iostream>
 #include <unistd.h>
-#include <chrono>
 #include <opencv2/opencv.hpp>
 #include "opencv2/videoio.hpp"
 #include "opencv2/imgproc.hpp"
@@ -17,6 +16,8 @@ using namespace cv;
 
 Camera::Camera(const char *endpoint)
 {
+  this->frameInvalid = false;
+  this->persistence = 100;
   cout << "camera: Open endpoint " << endpoint << endl;
   // Init video capture
   this->cap = new VideoCapture(endpoint);
