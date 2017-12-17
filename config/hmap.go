@@ -2,13 +2,13 @@ package config
 
 import "github.com/qwantix/qxeye/util"
 
-type hmap map[string]interface{}
+type Hmap map[string]interface{}
 
-func (h *hmap) Has(key string) bool {
+func (h *Hmap) Has(key string) bool {
 	return (*h)[key] != nil
 }
 
-func (h *hmap) String(key string) string {
+func (h *Hmap) String(key string) string {
 	if h.Has(key) {
 		switch (*h)[key].(type) {
 		case string:
@@ -20,7 +20,7 @@ func (h *hmap) String(key string) string {
 	return ""
 }
 
-func (h *hmap) Bool(key string) bool {
+func (h *Hmap) Bool(key string) bool {
 	if h.Has(key) {
 		switch (*h)[key].(type) {
 		case bool:
@@ -32,7 +32,7 @@ func (h *hmap) Bool(key string) bool {
 	return false
 }
 
-func (h *hmap) Int(key string) int {
+func (h *Hmap) Int(key string) int {
 	if h.Has(key) {
 		switch (*h)[key].(type) {
 		case int:
@@ -46,7 +46,7 @@ func (h *hmap) Int(key string) int {
 	return 0
 }
 
-func (h *hmap) Float(key string) float64 {
+func (h *Hmap) Float(key string) float64 {
 	if h.Has(key) {
 		switch (*h)[key].(type) {
 		case float64:

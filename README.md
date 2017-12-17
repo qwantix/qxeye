@@ -129,8 +129,11 @@ Image will be sliced into 4 lines, first line will be slices in 5 cols and last 
 
 ```js
 "services": [
-   "serviceName": { 
-       // Params
+   "myServiceName": { 
+       "service": String // file, http or twitter
+       "params": {
+            // Params
+       }
    }
 ]
 ```
@@ -159,8 +162,14 @@ Capture image and save it to a file
 }
 ```
 
-#### url
-Not implemented yet
+#### http
+
+```js
+{
+    "url": "http://", // Dir to store file
+    "traces": "matches,ignoredZonesOnly" // Comma separated trace flag
+}
+````
 
 #### script
 Not implemented yet
@@ -175,8 +184,10 @@ Not implemented yet
 
 ## Roadmap & Notes
 
-* Implement url and script trigger
+* Implement ftp and script trigger
+* Implement/test [movidus](https://developer.movidius.com/) support
 * Support YOLO2 model
+* Support simple classifier
 * Support haarcascade ? useful?
 * Record a video sample instead of capture
 * Pretrain model optimized for video surveillance

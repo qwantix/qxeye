@@ -7,6 +7,7 @@ import (
 	"github.com/qwantix/qxeye/camera"
 	"github.com/qwantix/qxeye/config"
 	"github.com/qwantix/qxeye/service/file"
+	"github.com/qwantix/qxeye/service/http"
 	"github.com/qwantix/qxeye/service/twitter"
 	"github.com/qwantix/qxeye/util"
 )
@@ -58,15 +59,16 @@ func onEvent(qe *QxEye, ev camera.CameraEvent) {
 		if services[t.Service] == nil {
 			cfg := qe.config.Services[t.Service]
 			var s Service
-			switch t.Service {
+			switch cfg.Service {
 			case "file":
 				s = file.New(cfg)
-			case "url": // TODO
+			case "http":
+				s = http.New(cfg)
 			case "script": // TODO
 			case "twitter":
 				s = twitter.New(cfg)
 			default:
-				util.Warn("Notifier service '", t.Service, "' not found")
+				util.Error("Notifier service '", cfg.Service, "' at '", t.Service, "' not found")
 				continue
 			}
 			services[t.Service] = s

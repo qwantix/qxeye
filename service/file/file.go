@@ -18,11 +18,11 @@ type FileService struct {
 
 func New(cfg config.ServiceConfig) *FileService {
 	fs := new(FileService)
-	fs.dir = cfg.String("dir")
+	fs.dir = cfg.Params.String("dir")
 	if _, err := os.Stat(fs.dir); os.IsNotExist(err) {
 		os.MkdirAll(fs.dir, os.ModeTemporary)
 	}
-	fs.trace = camera.CameraTraceFlagFromString(cfg.String("traces"))
+	fs.trace = camera.CameraTraceFlagFromString(cfg.Params.String("traces"))
 	return fs
 }
 

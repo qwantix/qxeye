@@ -19,16 +19,16 @@ type TwitterService struct {
 func New(cfg config.ServiceConfig) *TwitterService {
 	ts := new(TwitterService)
 	var cred TwitterCredentials
-	if cfg.Has("file") {
-		cred.Load(cfg.String("file"))
+	if cfg.Params.Has("file") {
+		cred.Load(cfg.Params.String("file"))
 	} else {
-		cred.ConsumerKey = cfg.String("consumerKey")
-		cred.ConsumerSecret = cfg.String("consumerSecret")
-		cred.AccessToken = cfg.String("accessToken")
-		cred.AccessTokenSecret = cfg.String("accessTokenSecret")
+		cred.ConsumerKey = cfg.Params.String("consumerKey")
+		cred.ConsumerSecret = cfg.Params.String("consumerSecret")
+		cred.AccessToken = cfg.Params.String("accessToken")
+		cred.AccessTokenSecret = cfg.Params.String("accessTokenSecret")
 	}
 	ts.tw = NewTwitterClient(cred)
-	ts.fs = file.New(config.ServiceConfig{"dir": "/tmp", "traces": cfg.String("traces")})
+	ts.fs = file.New(config.ServiceConfig{Service: "file", Params: config.Hmap{"dir": "/tmp", "traces": cfg.Params.String("traces")}})
 	return ts
 }
 
@@ -60,7 +60,7 @@ func (ts *TwitterService) Push(ev *camera.CameraEvent, t *config.TriggerConfig) 
 	msg = buff.String()
 	util.Log(msg, u)
 	filename := ts.fs.CaptureToFile(ev, t)
-	util.Log(filename)
+	//util.Log(filename)
 	ts.tw.DirectMessageWithMediaFilename(u.IdStr, msg, filename)
 	ts.fs.RemoveFile(filename)
 }

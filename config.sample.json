@@ -57,20 +57,26 @@
         "danger"
       ],
       "confidence": 0.2,
-      "service": "file",
+      "service": "local",
       "delay": 20
     }
   ],
   "services": {
-    "twitter": {
-      "consumerKey": "xxxxxxxxxxxxxxxxxxxxxxxx",
-      "consumerSecret": "xxxxxxxxxxxxxxxxxxxxxxxx",
-      "accessToken": "xxxxxxxxxxxxxxxxxxxxxxxx",
-      "accessTokenSecret": "xxxxxxxxxxxxxxxxxxxxxxxx"
+    "myTwitter": {
+      "service": "twitter",
+      "params": {
+        "consumerKey": "xxxxxxxxxxxxxxxxxxxxxxxx",
+        "consumerSecret": "xxxxxxxxxxxxxxxxxxxxxxxx",
+        "accessToken": "xxxxxxxxxxxxxxxxxxxxxxxx",
+        "accessTokenSecret": "xxxxxxxxxxxxxxxxxxxxxxxx"
+      }
     },
-    "file": {
-      "traces": "matches,ignoredZonesOnly",
-      "dir": "./captures"
+    "local": {
+      "service": "file",
+      "params": {
+        "traces": "matches,ignoredZonesOnly",
+        "dir": "./captures"
+      }
     }
   }
 }

@@ -34,7 +34,7 @@ type CameraConfig struct {
 type MatcherConfig struct {
 	Name   string `json:"name"`
 	Type   string `json:"type"`
-	Params hmap   `json:"params"`
+	Params Hmap   `json:"params"`
 }
 
 type TriggerConfig struct {
@@ -42,12 +42,14 @@ type TriggerConfig struct {
 	Confidence float32  `json:"confidence"`
 	Zones      []string `json:"zones"`
 	Delay      int      `json:"delay"`
-	Service   string   `json:"service"`
-	Params     hmap     `json:"params"`
+	Service    string   `json:"service"`
+	Params     Hmap     `json:"params"`
 }
 
-type ServiceConfig = hmap
-
+type ServiceConfig struct {
+	Service string `json:"service"`
+	Params  Hmap   `json:"params"`
+}
 
 func (t *TriggerConfig) HasZone(zone string) bool {
 	for _, z := range t.Zones {
