@@ -8,6 +8,9 @@ It is designed to run on tiny hardware like RaspberryPI or OrangePI, but require
 
 ## How It Works
 
+
+![](doc/assets/detection_flow.png)
+
 QxEye reads the camera's video stream. It will compare the image with a stack of previous images to isolate the movement zones and then analyze each zones with a pre-trained dnn to detect objects with precision, such as a person.
 
 Finally, you will have the choice to save a capture, tweet direct message, call an url or execute a script when a match is positive.
@@ -178,12 +181,12 @@ Not implemented yet
 
 # Install
 
-## Requirements
+**Requirements**
 
 * Go 1.9 (but 1.8 should work)
 * OpenCV 3.3
 
-### Opencv 3.3 Install
+## Opencv 3.3 Install
 
 Inspired by https://www.pyimagesearch.com/2017/10/09/optimizing-opencv-on-the-raspberry-pi/
 
@@ -220,7 +223,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_EXAMPLES=OFF ..
 ```
 
-### Install qxeye
+## Install qxeye
 
 `go get github.com/qwantix/qxeye`
 
