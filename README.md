@@ -181,6 +181,48 @@ Not implemented yet
 * Go 1.9
 * OpenCV 3.3
 
+### Install
+
+`go get github.com/qwantix/qxeye`
+
+### Opencv 3.3 Install
+
+Inspired by https://www.pyimagesearch.com/2017/10/09/optimizing-opencv-on-the-raspberry-pi/
+
+Prepare deps
+
+```sh
+sudo apt update
+sudo apt upgrade
+sudo apt remove x264 libx264-dev
+sudo apt install build-essential checkinstall cmake pkg-config yasm gfortran git libjpeg8-dev  libpng16-16 libtiff5-dev libavcodec-dev libavformat-dev libswscale-dev libdc1394-22-dev libxine2-dev libv4l-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libqt4-dev libgtk2.0-dev libtbb-dev libatlas-base-dev libfaac-dev libmp3lame-dev libtheora-dev libvorbis-dev libxvidcore-dev libopencore-amrnb-dev libopencore-amrwb-dev x264 v4l-utils libgoogle-glog-dev libgflags-dev libgphoto2-dev libeigen3-dev libhdf5-dev
+```
+
+Get opencv 3.3
+```sh
+wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.3.0.zip
+unzip opencv.zip
+wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.3.0.zip
+unzip opencv_contrib.zip
+```
+
+Compile
+```sh
+cd opencv-3.3.0/
+mkdir build
+cd build
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+    -D CMAKE_INSTALL_PREFIX=/usr/local \
+    -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-3.3.0/modules \
+    -D ENABLE_NEON=ON \
+    -D ENABLE_VFPV3=ON \
+    -D WITH_TBB=ON \
+    -D BUILD_TESTS=OFF \
+    -D INSTALL_PYTHON_EXAMPLES=OFF \
+    -D BUILD_EXAMPLES=OFF ..
+```
+
+
 
 ## Roadmap & Notes
 
