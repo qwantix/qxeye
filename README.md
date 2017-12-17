@@ -15,6 +15,18 @@ QxEye reads the camera's video stream. It will compare the image with a stack of
 
 Finally, you will have the choice to save a capture, tweet direct message, call an url or execute a script when a match is positive.
 
+
+### My installation
+To inspire you here is the installation that I set up at home :
+
+![](doc/assets/installation_sample.png)
+
+With the POE, Orange PI and camera are powered by switch! So, there is only one power outlet plugged in!!
+
+An another advantage to this setup, is that cameras are isolated on sub network.
+This configuration prohibits any hacking of camera streams and also prohibits cheap cameras containing dubious firmware from accessing the internet or my local network.
+
+
 ## Configuration
 
 Configuration is splitted in 4 sections :
