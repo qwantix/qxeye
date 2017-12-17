@@ -176,14 +176,12 @@ Not implemented yet
 
 ---
 
+# Install
+
 ## Requirements
 
-* Go 1.9
+* Go 1.9 (but 1.8 should work)
 * OpenCV 3.3
-
-### Install
-
-`go get github.com/qwantix/qxeye`
 
 ### Opencv 3.3 Install
 
@@ -222,9 +220,15 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_EXAMPLES=OFF ..
 ```
 
+### Install qxeye
+
+`go get github.com/qwantix/qxeye`
 
 
-## Roadmap & Notes
+---
+
+
+# Roadmap & Notes
 
 * Implement ftp and script trigger
 * Implement/test [movidus](https://developer.movidius.com/) support
